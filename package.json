@@ -1,0 +1,12 @@
+{
+  "name": "TheBridge",
+  "version": "0.0.1",
+  "description": "Central GUI of Devstar 2.0",
+  "author": "Ramon Gebben <devstar@ra-ge.net>",
+  "devDependencies": {
+    "express": "^4.10.2",
+    "serve-static": "^1.7.1"
+  },
+  "dependencies": {
+  }
+}
