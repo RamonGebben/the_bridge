@@ -1,0 +1,162 @@
+@import url('components.css');
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: Helvetica;
+	font-weight: 100;
+	height: 100%;
+}
+
+body {
+  background: url('/img/bg.png') no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+}
+
+.title_bar {
+	position: absolute;
+	top: 0; right: 0; left: 0;
+	width: 100%;
+	height: 1.2em;
+	background: #F6F6F6;
+	overflow: hidden;
+	border-bottom: 1px solid #D1CFD8;
+}
+
+.title_bar .text {
+	text-align: center;
+	margin: 0 auto;
+	width: 100%;
+	max-width: 200px;
+	display: block;
+	line-height: 20px
+}
+
+.left_corner {
+	position: absolute;
+	left: 0px;
+	top: 0;
+	bottom: 0;
+	width: 70px;
+	padding: 2px 0 0 5px;
+}
+
+.left_corner span {
+	width: 12px; height: 12px;
+	display: inline-block;
+	margin-right: 4px;
+	background-size: 100%;
+	background-position: center;
+}
+.title_bar .left_corner span:last-child { margin-right: 0;}
+.title_bar .left_corner .close_window { background-image: url('/img/close.png'); }
+.title_bar .left_corner .minimize_window { background-image: url('/img/minimize.png'); }
+.title_bar .left_corner .resize_window {background-image: url('/img/resize.png'); }
+/* In hover state */
+.title_bar .left_corner:hover .close_window { background-image: url('/img/close_hover.png'); }
+.title_bar .left_corner:hover .minimize_window { background-image: url('/img/minimize_hover.png'); }
+.title_bar .left_corner:hover .resize_window {background-image: url('/img/resize_hover.png'); }
+
+.window.focused .title_bar { 
+	background: #f1f1f1;
+	background: -moz-linear-gradient(top, #E9E9E9 3%, #d8d8d8 100%);
+	background: -webkit-gradient(left top, left bottom,color-stop(3%, #E9E9E9), color-stop(100%, #d8d8d8));
+	background: -webkit-linear-gradient(top, #E9E9E9 3%, #d8d8d8 100%);
+	background: -o-linear-gradient(top, #E9E9E9 3%, #d8d8d8 100%);
+	background: -ms-linear-gradient(top, #E9E9E9 3%, #d8d8d8 100%);
+	background: linear-gradient(to bottom, #E9E9E9 3%, #d8d8d8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f1f1', endColorstr='#d8d8d8', GradientType=0 ); 
+
+	-webkit-box-shadow: inset 0px 1px 1px 0px rgba(255, 255, 255, 0.76);
+	-moz-box-shadow:    inset 0px 1px 1px 0px rgba(255, 255, 255, 0.76);
+	box-shadow:         inset 0px 1px 1px 0px rgba(255, 255, 255, 0.76);
+	border-color: #C1C0C6;
+}
+
+.window.minimized .title_bar {
+	height: 5px;
+}
+
+.window.minimized .title_bar span {
+	display: none;
+}
+.resizer { width: 10px; height: 10px; background: blue; position:absolute; right: 0; bottom: 0; cursor: se-resize; }
+
+
+.window {
+	width: 500px; 
+	height: 500px; 
+	border: 1px solid #BEBEBE;
+	position: absolute;
+	background-color:  #fff;
+	z-index: 100;
+	border-radius: 4px;
+	padding-top: 20px;
+	-webkit-border-radius: 4px;
+  	-moz-border-radius: 4px;
+  	border-radius: 4px;
+  	-moz-box-shadow: 0 4px 12px rgba(0,0,0,.5);
+  	-webkit-box-shadow: 0 4px 12px rgba(0,0,0,.5);
+  	box-shadow: 0 4px 12px rgba(0,0,0,.5);
+  	overflow: hidden;
+  	border: 1px solid #C1C2C2;
+  	transition: width .2s ease-out, height .2s ease-out, opacity .1s ease-in;
+  	opacity: .88;
+}
+
+.window.focused { z-index: 500; opacity: 1; }
+
+.window:nth-child(1){ left: 20px; top: 10px; }
+.window:nth-child(2){ left: 40px; top: 20px; }
+.window:nth-child(3){ left: 60px; top: 30px; }
+.window:nth-child(4){ left: 80px; top: 40px; }
+.window:nth-child(5){ left: 100px;top: 50px; }
+
+.window.big {
+	width: 100%;
+	height: 100%;
+	top: 0; right: 0; bottom: 0; left: 0;
+}
+
+.window.fullscreen {
+	width: 100%;
+	height: 100%;
+	top: 0!important; right: 0!important; bottom: 0!important; left: 0!important;
+}
+
+.window.minimized {
+	width: 30px;
+	height: 30px;
+	top: auto!important; bottom: 0!important;;
+}
+
+.window.minimized:nth-child(1){ left: 20px;  }
+.window.minimized:nth-child(2){ left: 40px;  }
+.window.minimized:nth-child(3){ left: 60px;  }
+.window.minimized:nth-child(4){ left: 80px;  }
+.window.minimized:nth-child(5){ left: 100px; }
+
+
+.window_body {
+	height: 100%;
+	width: 100%;
+}
+
+.app {
+	width: 100%;
+	height: 100%;
+	border: none;
+}
+
+
+
+
+

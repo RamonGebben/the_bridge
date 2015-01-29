@@ -1,0 +1,11 @@
+@import url(../../../css/components.css);
+
+body {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.icon {
+	margin: 35px;
+	box-shadow: 0 0 10px #111;
+}
