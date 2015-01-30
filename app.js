@@ -28,6 +28,20 @@ app.get('/projects', function( req, res ){
 	})
 });
 
+app.post('/actions/:action', function( req, res ){
+	var params = req.params;
+	var ts;
+	console.log( params.action )
+	switch( params.action ){
+		case 'editor':
+			ts = { action: params.action };
+			break;
+		default:
+			ts = { action: params.action };
+	}
+	res.json( ts );
+});
+
 var server = app.listen(1337, function () {
 
   var host = server.address().address

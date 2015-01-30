@@ -17,10 +17,9 @@ function renderProjects(){
 	};
 }
 
-
 $( document ).on('click', '.icon', function( evt ){
 	var project = $( evt.currentTarget ).data('project');
-	venster.openApp( app );
+	window.parent.postMessage( { name: project, action: 'editor' } , '*')
 });
 
 

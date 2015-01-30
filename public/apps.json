@@ -1,0 +1,10 @@
+{
+    "projects": {
+         "route": "/apps/projects/index.html",
+          "name": "Projects"
+    },
+    "editor": {
+        "route": "http://demo:demo@192.168.1.128:4567",
+        "name": "Editor"
+    }
+}

@@ -28,7 +28,11 @@ html, body {
 	user-select: none;
 	margin: 35px;
 	box-shadow: 0 0 10px #111;
+	opacity: 0.88;
+	transition: opacity .2s ease-out;
 }
+
+.icon:hover { opacity: 1; transition: opacity .2s ease-out;}
 
 .icon span {
 	position: absolute;
@@ -40,3 +44,6 @@ html, body {
 .icon span:first-letter{
 	text-transform: uppercase;
 }
+
+.icon.projects { background-image: url('/img/icons/project.png'); }
+.icon.editor { background-image: url('/img/icons/editor.png'); }

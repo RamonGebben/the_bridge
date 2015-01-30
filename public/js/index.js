@@ -2,15 +2,17 @@ function Manager(){
 	this.workspaces = [];
 }
 
-
 function Window(){}
 
 function WorkSpace(){}
 
 function Icon(){}
 
+var apps = {};
+
+
 Icon.prototype.create = function( name ){
-	var $icon = $('<div class="icon" data-app="'+ name +'"></div>');
+	var $icon = $('<div class="icon '+ name +'" data-app="'+ name +'"></div>');
 	var $app_name = $('<span>'+ name +'</span>');
 	$icon.append( $app_name );
 
@@ -19,6 +21,7 @@ Icon.prototype.create = function( name ){
 
 WorkSpace.prototype.create = function ( alias ){
 	var wp = $('<div class="workspace current '+ alias +'"></div>');
+	manager.workspaces.push( alias );
 	return wp;
 }
 
@@ -44,16 +47,19 @@ Window.prototype.create = function( alias ){
    		anchor: $topbar[0],
     	dragstart: function( evt ) {
         // Do something
-    }
-});
+    	}
+	});
 
 	// Return the pretty window
 	return $wind;
 }
 
 Window.prototype.openApp = function( name ){
+
 	var _window = this.create( name );
-	var $app = $('<iframe class="app" src="/apps/'+ name +'/index.html"></iframe>');
+	var origin = apps[ name ].route;
+	var $app = $('<iframe class="app" src="'+ origin +'"></iframe>');
+
 	$( _window ).append( $app );
 
 	$('.workspace.current').append( _window );
@@ -71,15 +77,13 @@ $(document).on('click', '.left_corner span', function( evt ){
 
 	switch( action ){
     case 'close':
-        $( '.' + _window ).remove();
+        $( '.window.' + _window ).first().remove();
         break;
     case 'minimize':
-        console.log('minimize');
         $( '.' + _window ).addClass('minimized');
         console.log( _window )
         break;
     case 'fullscreen':
-        console.log('fullscreen');
         $( '.' + _window ).toggleClass('fullscreen');
         break;
     default:
@@ -89,6 +93,7 @@ $(document).on('click', '.left_corner span', function( evt ){
 
 });
 
+var manager = new Manager();
 var venster = new Window();
 var workspace = new WorkSpace();
 var icon = new Icon();
@@ -114,12 +119,38 @@ $( document ).on('click', '.icon', function( evt ){
 
 function setupDesktop(){
 	$('body').append( workspace.create('desktop') );
-	var $icon = icon.create('projects');
-	$('.desktop').append( $icon );
+	$.getJSON('/apps.json', function( data ){
+		console.log( data );
+		apps = data;
+	}).done(function(){
+		$.each( apps, function( app ){
+			var $icon = icon.create( app );
+			$('.desktop').append( $icon );
+		});
+	});
 }
 
-function testSetup(){
+function listener( event ){
+  if(event.data.name) {
+    console.log([event.data.name, event.data.action] );
+    switch( event.data.action ){
+    	case 'editor':
+    		venster.openApp('editor');
+    		break;
+    	default:
+    		// Do nothing
+    }
+  }
+}
 
+if (window.addEventListener){
+  addEventListener("message", listener, false)
+} else {
+  attachEvent("onmessage", listener)
+}
+
+
+function testSetup(){
 	setupDesktop();
 }
 
