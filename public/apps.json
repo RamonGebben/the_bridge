@@ -4,7 +4,7 @@
           "name": "Projects"
     },
     "editor": {
-        "route": "http://demo:demo@192.168.1.128:4567",
+        "route": "http://demo:demo@0.0.0.0:4567",
         "name": "Editor"
     }
 }

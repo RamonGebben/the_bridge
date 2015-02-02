@@ -28,16 +28,24 @@ app.get('/projects', function( req, res ){
 	})
 });
 
-app.post('/actions/:action', function( req, res ){
+app.post('/actions/:action/:context?', function( req, res ){
 	var params = req.params;
 	var ts;
-	console.log( params.action )
+	console.log( params.action, params.context )
 	switch( params.action ){
 		case 'editor':
-			ts = { action: params.action };
+			ts = { action: params.action, context: params.context };
+			request.post('http://demo:demo@0.0.0.0:4567/project/' + params.context, function( error, response, body ){
+				if( error ){
+					console.log( error );
+				}else {
+					console.log(['resp', response, 'body', body]);
+				}
+			});
 			break;
 		default:
-			ts = { action: params.action };
+			ts = { action: params.action, context: params.context };
+			break;
 	}
 	res.json( ts );
 });

@@ -135,7 +135,7 @@ function listener( event ){
     console.log([event.data.name, event.data.action] );
     switch( event.data.action ){
     	case 'editor':
-    		venster.openApp('editor');
+    		$.post('/actions/editor/'+ event.data.name, 'open' , function( data ){ console.log( data )}).done( venster.openApp('editor') );
     		break;
     	default:
     		// Do nothing
