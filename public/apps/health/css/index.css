@@ -1,0 +1,27 @@
+@import url(../../../css/components.css);
+
+.container {
+	padding: 20px;
+}
+pre, code {
+	max-width: 300px;
+	width: 100%;
+	background-color: #ccc;
+	color: #111;
+}
+pre { overflow-x: scroll; border: 1px solid #ddd; border-radius: 4px; }
+
+
+path {
+  fill: #7FDBFF;
+  stroke: #333;
+  stroke-width: 1.5px;
+  transition: fill 250ms linear;
+  transition-delay: 150ms;
+}
+
+path:hover {
+  fill: #57B8A4;
+  stroke: #000;
+  transition-delay: 0;
+}

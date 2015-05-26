@@ -8,6 +8,7 @@
     "serve-static": "^1.7.1"
   },
   "dependencies": {
-    "request": "^2.51.0"
+    "request": "^2.51.0",
+    "simple-stats-server": "0.0.5"
   }
 }

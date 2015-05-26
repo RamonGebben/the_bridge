@@ -2,6 +2,8 @@ var express = require('express');
 var request = require('request');
 var app = express();
 var exec = require('child_process').exec;
+var sss = require('simple-stats-server');
+var stats = sss();
 
 app.use(express.static(__dirname + '/public'));
 
@@ -43,12 +45,17 @@ app.post('/actions/:action/:context?', function( req, res ){
 				}
 			});
 			break;
+		case 'health':
+			ts = { action: params.action, context: params.context };
 		default:
 			ts = { action: params.action, context: params.context };
 			break;
 	}
 	res.json( ts );
 });
+
+// Return stats in JSON
+app.use('/server/stats', stats);
 
 var server = app.listen(1337, function () {
 
